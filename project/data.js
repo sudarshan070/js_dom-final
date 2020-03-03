@@ -1,3 +1,54 @@
+var ul = document.querySelector("ul");
+ul.classList.add("flex");
+var card = document.querySelector(".card");
+
+// creste all buttons
+function allButtons(data) {
+  for (let i = 0; 1 <= got.houses.length; i++) {
+    var li = document.createElement("li");
+    li.setAttribute("data-id", i);
+    var buttonAll = document.createElement("button");
+    buttonAll.innerHTML = got.houses[i].name;
+    li.append(buttonAll);
+    ul.append(li);
+    buttonAll.addEventListener("click", event => getPeople(event, data));
+  }
+}
+
+function getPeople(event, data) {
+  var id = event.target.parentNode.dataset.id;
+  data.houses.forEach((ele, i) => {
+    if (i == id) {
+      ele.people.forEach(element => {
+        var namePeople = element.name;
+        var imagePeople = element.image;
+        var para = element.description;
+
+        console.log(element.name);
+
+        var h3 = document.createElement("h3");
+        h3.classList.add("peopleName");
+        h3.innerHTML = namePeople;
+
+        var img = document.createElement("img");
+        img.classList.add("image");
+        img.src = imagePeople;
+
+        var p = document.createElement("p");
+        p.classList.add("para");
+        p.innerHTML = para;
+
+        card.append(img, h3, p);
+        // var h3 = document.createElement("h3");
+        // h3.innerHTML = element.name;
+        // document.body.append(h3);
+      });
+    }
+  });
+}
+
+// function card(data) {}
+
 const got = {
   houses: [
     {
@@ -316,3 +367,4 @@ const got = {
     }
   ]
 };
+allButtons(got);
